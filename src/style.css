@@ -31,3 +31,9 @@
 .bg-other {
     background-color: #f3f4f6; /* A default light gray */
 }
+
+.weather-container {
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}

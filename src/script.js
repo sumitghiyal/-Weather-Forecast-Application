@@ -44,7 +44,7 @@ async function fetchWeatherData(url) {
 }
 
 // Function to update the UI with fetched weather data
-function updateUI(data) {
+async function updateUI(data) {
     hideElement(errorMessageEl);
     showElement(weatherCard);
     
@@ -86,6 +86,14 @@ function updateUI(data) {
     
     // Dynamic background change based on weather condition
     updateBackground(data.current.condition.text);
+
+    // Call the new functions at the end of the updateUI function
+    const forecastData = await fetchForecastData(data.location.name);
+    if (forecastData) {
+        displayForecast(forecastData);
+    } else {
+        hideElement(document.getElementById('forecast-section'));
+    }
 }
 
 // Function to toggle temperature unit between Celsius and Fahrenheit
@@ -218,3 +226,56 @@ dropdownBtn.addEventListener('click', () => {
 
 // Initial call to populate the dropdown on page load
 document.addEventListener('DOMContentLoaded', populateDropdown);
+
+
+// Function to fetch 5-day forecast data
+async function fetchForecastData(city) {
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=5`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Forecast data not found');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching forecast data:', error);
+        return null;
+    }
+}
+
+// Function to display the 5-day forecast
+function displayForecast(forecastData) {
+    const forecastContainer = document.getElementById('forecast-container');
+    const forecastSection = document.getElementById('forecast-section');
+    forecastContainer.innerHTML = ''; // Clear previous forecast cards
+    showElement(forecastSection);
+
+    forecastData.forecast.forecastday.forEach(day => {
+        const date = new Date(day.date).toLocaleDateString('en-US', { weekday: 'short' });
+        const avgTempC = Math.round(day.day.avgtemp_c);
+        const humidity = day.day.avghumidity;
+        const windKph = day.day.maxwind_kph;
+        const icon = day.day.condition.icon;
+        const description = day.day.condition.text;
+        
+        const forecastCard = document.createElement('div');
+        forecastCard.classList.add('bg-white', 'rounded-lg', 'p-4', 'shadow-md', 'flex', 'flex-col', 'items-center', 'text-center');
+        forecastCard.innerHTML = `
+            <h4 class="text-lg font-semibold text-gray-800">${date}</h4>
+            <img src="https:${icon}" alt="${description}" class="w-16 h-16">
+            <p class="text-2xl font-bold text-blue-600">${avgTempC}&deg;C</p>
+            <div class="mt-2 text-gray-700 text-sm w-full space-y-1">
+                <div class="flex justify-between items-center">
+                    <span class="text-lg">💧</span>
+                    <span class="font-medium">${humidity}%</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-lg">💨</span>
+                    <span class="font-medium">${windKph} km/h</span>
+                </div>
+            </div>
+        `;
+        forecastContainer.appendChild(forecastCard);
+    });
+}
