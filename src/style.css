@@ -1,0 +1,33 @@
+/* Custom background classes for weather conditions */
+.bg-sunny {
+    background-image: url('https://source.unsplash.com/random/1600x900/?sunny-day');
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+}
+
+.bg-rainy {
+    background-image: url('https://source.unsplash.com/random/1600x900/?rainy-day');
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+}
+
+.bg-cloudy {
+    background-image: url('https://source.unsplash.com/random/1600x900/?cloudy-sky');
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+}
+
+.bg-snowy {
+    background-image: url('https://source.unsplash.com/random/1600x900/?snowy-weather');
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+}
+
+/* Fallback background for other conditions */
+.bg-other {
+    background-color: #f3f4f6; /* A default light gray */
+}
