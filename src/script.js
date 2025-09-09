@@ -1,6 +1,8 @@
+// The API key is a unique identifier for your WeatherAPI.com account.
+// It's used to authenticate your requests and access the weather data.
 const apiKey = '8f361b2f641744e7900150745250909';
 
-// DOM elements
+// Select all necessary HTML elements from the DOM for easy access and manipulation.
 const cityInput = document.getElementById('city-input');
 const searchBtn = document.getElementById('search-btn');
 const currentLocationBtn = document.getElementById('current-location-btn');
@@ -18,19 +20,34 @@ const dropdownContainer = document.getElementById('dropdown-container');
 const dropdownBtn = document.getElementById('dropdown-btn');
 const dropdownMenu = document.getElementById('dropdown-menu');
 
-// Global state variables for temperature toggle
+// Global state variables for temperature toggle.
+// `currentTempCelsius` stores the temperature in Celsius to avoid recalculation.
+// `currentUnit` tracks the currently displayed unit ('C' or 'F').
 let currentTempCelsius = null;
 let currentUnit = 'C';
 
-// Helper functions for showing/hiding elements
+// B. Helper Functions
+
+// These functions handle the visibility and opacity of elements.
+// Using `opacity` and `pointer-events` creates a smooth fade transition.
 const showElement = (element) => element.classList.remove('hidden');
 const hideElement = (element) => element.classList.add('hidden');
+
+
+// C. API Data Fetching
+
+/**
+ * Fetches current weather data from the WeatherAPI.com API.
+ * @param {string} url The complete API URL for the request.
+ * @returns {Promise<Object|null>} A promise that resolves to the JSON data on success, or null on error.
+ */
 
 // Function to handle fetching weather data from the API
 async function fetchWeatherData(url) {
     try {
         const response = await fetch(url);
-        // WeatherAPI.com returns a JSON error object, not a 404 status.
+       // Check if the response was successful. WeatherAPI.com provides
+        // a JSON error object even for non-200 status codes (e.g., 400).
         if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData.error.message);
@@ -38,7 +55,13 @@ async function fetchWeatherData(url) {
         const data = await response.json();
         return data;
     } catch (error) {
+        // If an error occurs, log it, display the error message on the UI,
+        // and hide the weather and forecast cards.
         console.error('Error fetching weather data:', error);
+        errorMessageEl.querySelector('p').textContent = error.message;
+        hideElement(weatherCard);
+        hideElement(forecastSection);
+        showElement(errorMessageEl);
         return null;
     }
 }
@@ -244,7 +267,12 @@ async function fetchForecastData(city) {
     }
 }
 
-// Function to display the 5-day forecast
+// D. UI Updates & Logic
+
+/**
+ * Displays the 5-day forecast on the UI.
+ * @param {Object} forecastData The data object containing the forecast.
+ */
 function displayForecast(forecastData) {
     const forecastContainer = document.getElementById('forecast-container');
     const forecastSection = document.getElementById('forecast-section');
