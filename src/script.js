@@ -260,7 +260,7 @@ function displayForecast(forecastData) {
         const description = day.day.condition.text;
         
         const forecastCard = document.createElement('div');
-        forecastCard.classList.add('bg-white', 'rounded-lg', 'p-4', 'shadow-md', 'flex', 'flex-col', 'items-center', 'text-center');
+        forecastCard.classList.add('bg-white', 'rounded-lg', 'p-4', 'shadow-md', 'flex', 'flex-col', 'items-center', 'text-center', 'transition-all', 'duration-300', '**hover:scale-105**', '**hover:shadow-lg**');
         forecastCard.innerHTML = `
             <h4 class="text-lg font-semibold text-gray-800">${date}</h4>
             <img src="https:${icon}" alt="${description}" class="w-16 h-16">

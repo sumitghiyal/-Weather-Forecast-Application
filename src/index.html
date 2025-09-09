@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100  min-h-screen flex items-center justify-center p-4">
 
-    <div class="weather-container bg-white  rounded-2xl shadow-xl p-6 md:p-10 w-full my-10 border-t-8 border-blue-500">
+    <div class="weather-container bg-white  rounded-2xl shadow-xl p-6 md:p-10 w-full my-10 border-t-8 border-blue-500 **animate-float**">
         
         <div class="mb-6">
             <h1 class="text-3xl font-bold text-center  mb-2">Weather App</h1>
@@ -48,7 +48,7 @@
             <p id="weather-description" class="text-lg text-gray-500 capitalize mb-2"></p>
             
             <div class="flex items-center justify-center my-4">
-                <img id="weather-icon" src="" alt="Weather icon" class="w-24 h-24">
+                <img id="weather-icon" src="" alt="Weather icon" class="w-24 h-24 **animate-bounce**">
                 <div class="text-7xl font-bold text-blue-600 ml-4" id="temperature"></div>
             </div>
 
@@ -67,10 +67,12 @@
                 <p></p>
             </div>
         </div>
-        <div id="forecast-section" class="mt-8 hidden">
+        <div id="forecast-section" class="mt-8 hidden **transition-opacity duration-500**">
             <h3 class="text-xl font-bold text-gray-800 mb-4">5-Day Forecast</h3>
             <div id="forecast-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                </div>
+    <div class="bg-white rounded-lg p-4 shadow-md flex flex-col items-center text-center **transition-colors duration-300**">
+        </div>
+</div>
         </div>
 
         <div id="error-message" class="hidden text-center text-red-500 mt-4">
