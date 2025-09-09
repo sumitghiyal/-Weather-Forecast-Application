@@ -36,11 +36,13 @@ Follow these steps to set up and run the project locally.
 Clone this project to your local machine:
 ```bash
 git clone [https://github.com/sumitghiyal/-Weather-Forecast-Application.git]
+```
 Navigate into the project directory:
-
+```
 Bash
 
 cd your-project-name
+```
 Step 2: Get Your API Key
 Go to https://www.weatherapi.com/.
 
@@ -51,9 +53,10 @@ Once logged in, your API key will be displayed on the dashboard.
 Step 3: Update the API Key
 Open the script.js file and replace the placeholder API key with your own key:
 
+```
 JavaScript
-
 const apiKey = 'YOUR_API_KEY'; // Replace '8f361b2f641744e7900150745250909' with your actual key
+```
 Step 4: Run the Application
 Since this is a client-side application, you can simply open the index.html file in your web browser. There is no need for a local server.
 
