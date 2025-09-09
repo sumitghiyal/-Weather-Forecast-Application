@@ -280,35 +280,3 @@ function displayForecast(forecastData) {
     });
 }
 
-// Add these lines to your initial variable declarations
-const darkModeToggle = document.getElementById('dark-mode-toggle');
-const body = document.body;
-
-// Function to set the theme
-function setTheme(isDark) {
-    if (isDark) {
-        body.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-    } else {
-        body.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-    }
-}
-
-// Event listener for the toggle button
-darkModeToggle.addEventListener('click', () => {
-    const isDark = body.classList.contains('dark');
-    setTheme(!isDark);
-});
-
-// Check for saved theme on page load
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        setTheme(true);
-    } else if (savedTheme === 'light') {
-        setTheme(false);
-    }
-    // And also populate the dropdown
-    populateDropdown();
-});

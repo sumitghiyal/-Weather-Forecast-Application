@@ -6,12 +6,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="style.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center p-4">
+<body class="bg-gray-100  min-h-screen flex items-center justify-center p-4">
 
-    <div class="weather-container bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 md:p-10 w-full my-10 border-t-8 border-blue-500">
+    <div class="weather-container bg-white  rounded-2xl shadow-xl p-6 md:p-10 w-full my-10 border-t-8 border-blue-500">
         
         <div class="mb-6">
-            <h1 class="text-3xl font-bold text-center text-gray-800 dark:text-gray-200 mb-2">Weather App</h1>
+            <h1 class="text-3xl font-bold text-center  mb-2">Weather App</h1>
             <div class="flex items-center space-x-2">
                 <input type="text" id="city-input" placeholder="Enter city name..." 
                        class="flex-grow px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200">
@@ -30,11 +30,7 @@
                 <button id="temp-toggle-btn" class="bg-gray-300 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold">
                     &deg;F
                 </button>
-                <button id="dark-mode-toggle" class="bg-gray-300 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                    <path d="M21.721 12.839a.75.75 0 00-.557-.965A12.502 12.502 0 0112 2.5a12.502 12.502 0 01-9.163 9.374.75.75 0 00-.557.965A11.252 11.252 0 0012 23.75a11.252 11.252 0 009.721-10.911z" />
-                  </svg>
-                </button>
+                
             </div>
             
             <div id="dropdown-container" class="relative mt-2 hidden">
