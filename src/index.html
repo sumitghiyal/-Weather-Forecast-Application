@@ -1,28 +1,39 @@
 <!doctype html>
 <html>
 <head>
+  <!-- Basic setup -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Import Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS file -->
   <link href="style.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100  min-h-screen flex items-center justify-center p-4">
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
 
-    <div class="weather-container bg-white  rounded-2xl shadow-xl p-6 md:p-10 w-full my-10 border-t-8 border-blue-500 **animate-float**">
+    <!-- Main container for the weather app -->
+    <div class="weather-container bg-white rounded-2xl shadow-xl p-6 md:p-10 w-full my-10 border-t-8 border-blue-500 animate-float">
         
+        <!-- Header section -->
         <div class="mb-6">
-            <h1 class="text-3xl font-bold text-center  mb-2">Weather App</h1>
+            <h1 class="text-3xl font-bold text-center mb-2">Weather App</h1>
+
+            <!-- Search bar with input and search button -->
             <div class="flex items-center space-x-2">
                 <input type="text" id="city-input" placeholder="Enter city name..." 
                        class="flex-grow px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200">
                 <button id="search-btn" 
                         class="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300">
+                    <!-- Search icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg>
                 </button>
             </div>
             
+            <!-- Buttons: Current location and Temperature toggle -->
             <div class="flex justify-between items-center mt-4">
                 <button id="current-location-btn" class="text-sm text-blue-500 hover:text-blue-700 transition-colors duration-200">
                     Use Current Location
@@ -30,28 +41,35 @@
                 <button id="temp-toggle-btn" class="bg-gray-300 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold">
                     &deg;F
                 </button>
-                
             </div>
             
+            <!-- Dropdown for recently searched cities -->
             <div id="dropdown-container" class="relative mt-2 hidden">
                 <button id="dropdown-btn" class="w-full text-left bg-white border border-gray-300 rounded-lg px-4 py-2 text-gray-700 flex items-center justify-between hover:bg-gray-50 transition-colors duration-200">
                     <span>Recently Searched</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <!-- Dropdown arrow -->
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
                 </button>
                 <div id="dropdown-menu" class="absolute w-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 z-10 hidden">
-                    </div>
+                    <!-- Dropdown items will be dynamically added here -->
+                </div>
             </div>
         </div>
 
+        <!-- Weather result card -->
         <div id="weather-card" class="text-center hidden transition-opacity duration-500">
             <h2 id="city-name" class="text-4xl font-extrabold text-gray-800 mb-1"></h2>
             <p id="weather-description" class="text-lg text-gray-500 capitalize mb-2"></p>
             
+            <!-- Weather icon + Temperature -->
             <div class="flex items-center justify-center my-4">
-                <img id="weather-icon" src="" alt="Weather icon" class="w-24 h-24 **animate-bounce**">
+                <img id="weather-icon" src="" alt="Weather icon" class="w-24 h-24 animate-bounce">
                 <div class="text-7xl font-bold text-blue-600 ml-4" id="temperature"></div>
             </div>
 
+            <!-- Extra weather info: Humidity & Wind Speed -->
             <div class="grid grid-cols-2 gap-4 text-gray-700 mt-6 text-sm md:text-base">
                 <div class="flex flex-col items-center">
                     <span class="font-semibold">Humidity</span>
@@ -63,24 +81,32 @@
                 </div>
             </div>
             
+            <!-- Weather alert box -->
             <div id="weather-alert" class="mt-4 p-2 bg-yellow-400 text-yellow-800 rounded-lg font-medium hidden">
                 <p></p>
             </div>
         </div>
-        <div id="forecast-section" class="mt-8 hidden **transition-opacity duration-500**">
+
+        <!-- Forecast section -->
+        <div id="forecast-section" class="mt-8 hidden transition-opacity duration-500">
             <h3 class="text-xl font-bold text-gray-800 mb-4">5-Day Forecast</h3>
+            
+            <!-- Forecast cards container -->
             <div id="forecast-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-    <div class="bg-white rounded-lg p-4 shadow-md flex flex-col items-center text-center **transition-colors duration-300**">
-        </div>
-</div>
+                <div class="bg-white rounded-lg p-4 shadow-md flex flex-col items-center text-center transition-colors duration-300">
+                    <!-- Forecast data will be dynamically added here -->
+                </div>
+            </div>
         </div>
 
+        <!-- Error message (for invalid city search) -->
         <div id="error-message" class="hidden text-center text-red-500 mt-4">
             <p>City not found. Please try again.</p>
         </div>
 
     </div>
 
+    <!-- Custom JavaScript file -->
     <script src="script.js"></script>
 
 </body>
