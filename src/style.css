@@ -1,12 +1,18 @@
 /* Custom background classes for weather conditions */
+/* These classes dynamically set a full-screen background image based on the weather. */
 .bg-sunny {
+    /* Sets a random image of a sunny day. The URL fetches a new image on each load. */
     background-image: url('https://source.unsplash.com/random/1600x900/?sunny-day');
+    /* Ensures the image covers the entire background. */
     background-size: cover;
+    /* Centers the background image. */
     background-position: center;
+    /* Adds a smooth transition effect when the background image changes. */
     transition: background-image 0.5s ease-in-out;
 }
 
 .bg-rainy {
+    /* Sets a random image for a rainy day. */
     background-image: url('https://source.unsplash.com/random/1600x900/?rainy-day');
     background-size: cover;
     background-position: center;
@@ -14,6 +20,7 @@
 }
 
 .bg-cloudy {
+    /* Sets a random image for a cloudy sky. */
     background-image: url('https://source.unsplash.com/random/1600x900/?cloudy-sky');
     background-size: cover;
     background-position: center;
@@ -21,6 +28,7 @@
 }
 
 .bg-snowy {
+    /* Sets a random image for snowy weather. */
     background-image: url('https://source.unsplash.com/random/1600x900/?snowy-weather');
     background-size: cover;
     background-position: center;
@@ -28,31 +36,47 @@
 }
 
 /* Fallback background for other conditions */
+/* This class provides a default background color if the weather condition doesn't match the specific image classes. */
 .bg-other {
-    background-color: #f3f4f6; /* A default light gray */
+    /* A default light gray color to ensure a consistent look. */
+    background-color: #f3f4f6;
 }
 
+/* General layout and container styles */
 .weather-container {
+    /* Limits the width of the container to 70% of its parent. */
     max-width: 70%;
+    /* Centers the container horizontally using automatic margins. */
     margin-left: auto;
     margin-right: auto;
 }
 
+/* Keyframe animations */
+/* These define the specific movements for the animations. */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
+    /* The animation starts and ends at the original position. */
+    0% { transform: translateY(0px); }
+    /* At 50% of the animation, the element moves up by 8 pixels. */
+    50% { transform: translateY(-8px); }
+    /* Returns to the original position. */
+    100% { transform: translateY(0px); }
 }
 
+/* Class to apply the float animation to an element */
 .animate-float {
-  animation: float 4s ease-in-out infinite;
+    /* Applies the 'float' animation with a duration of 4 seconds, a smooth ease-in-out timing function, and loops indefinitely. */
+    animation: float 4s ease-in-out infinite;
 }
 
 @keyframes bounce {
+    /* The animation starts and ends at the original position. */
     0%, 100% { transform: translateY(0); }
+    /* At the halfway point, the element moves up by 10 pixels. */
     50% { transform: translateY(-10px); }
 }
 
+/* Class to apply the bounce animation to an element */
 .animate-bounce {
+    /* Applies the 'bounce' animation with a duration of 2 seconds, a smooth ease-in-out timing function, and loops indefinitely. */
     animation: bounce 2s ease-in-out infinite;
 }
