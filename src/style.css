@@ -76,7 +76,3 @@
 }
 
 /* Class to apply the bounce animation to an element */
-.animate-bounce {
-    /* Applies the 'bounce' animation with a duration of 2 seconds, a smooth ease-in-out timing function, and loops indefinitely. */
-    animation: bounce 2s ease-in-out infinite;
-}
